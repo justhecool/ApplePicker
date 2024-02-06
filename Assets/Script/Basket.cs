@@ -6,12 +6,23 @@ using UnityEngine.UI;
 public class Basket : MonoBehaviour
 {
     private bool isClicked = false;
+    public Text scoreGT = null;
+    void Start()
+    {
+        GameObject scoreGO = GameObject.Find("ScoreCounter");
+        scoreGT = scoreGO.GetComponent<Text>();
+        scoreGT.text = "0";
+    }
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Apple")
         {
             Destroy(collision.gameObject);
         }
+        int score = int.Parse(scoreGT.text);
+        score += 100;
+        scoreGT.text = score.ToString();
+
     }
 
     void Update()
