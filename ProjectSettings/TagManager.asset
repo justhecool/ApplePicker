@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Apple
   - Basket
+  - scoreCount
+  - highScore
+  - Twig
+  - roundTimer
+  - roundCount
+  - BasketFly
+  - goldenApple
   layers:
   - Default
   - TransparentFX

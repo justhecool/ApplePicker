@@ -6,7 +6,11 @@ public class AppleInstantiator : MonoBehaviour
 {
     [SerializeField] private float instantiateInterval = 1.0f;
     [SerializeField] private GameObject applePrefab = null;
-    public static float bottomY = -20f;
+    
+    public static float bottomY = -10f;
+    private List<GameObject> appleInstances = new List<GameObject>();
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,17 +20,24 @@ public class AppleInstantiator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Mathf.PingPong(Time.time, 1);
-        if (transform.position.y < bottomY)
+        Mathf.Clamp(bottomY, -10f, 10f);
+        for (int i = appleInstances.Count - 1; i >= 0; i--)
         {
-            Destroy(gameObject);
+            if (appleInstances[i].transform.position.y < bottomY)
+            {
+                Destroy(appleInstances[i]);
+                appleInstances.RemoveAt(i);
+            }
         }
-        ApplePicker apScript = Camera.main.GetComponent<ApplePicker>();
-        apScript.AppleDestroyed();
+    }
+    public void RemoveApple(GameObject apple)
+    {
+        appleInstances.Remove(apple);
     }
 
     private void InstantiateApple()
     {
-        Instantiate(applePrefab, transform.position, transform.rotation);
+        GameObject appleInstance = Instantiate(applePrefab, transform.position, transform.rotation);
+        appleInstances.Add(appleInstance);
     }
 }

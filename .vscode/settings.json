@@ -51,5 +51,10 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ApplePicker.sln"
+    "dotnet.defaultSolution": "ApplePicker.sln",
+    "cSpell.words": [
+        "Behaviour",
+        "Instantiator",
+        "Prefs"
+    ]
 }
